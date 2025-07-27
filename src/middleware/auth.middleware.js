@@ -14,15 +14,15 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
   }
 
   // verify the token
-  const docoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
   // if the token is invalid or expired, throw an error
-  if (!docoded) {
+  if (!decoded) {
     throw new ApiError(401, "Invalid access token");
   }
 
   // find the user by id from the decoded token
-  const user = await User.findById(docoded.id);
+  const user = await User.findById(decoded.id);
   if (!user) {
     throw new ApiError(404, "User not found");
   }

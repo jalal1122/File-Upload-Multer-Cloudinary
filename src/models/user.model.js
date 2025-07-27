@@ -36,7 +36,7 @@ userSchema.pre("save", async function (next) {
   // Set the hashed password
   this.password = hashedPassword;
 
-  nect();
+  next();
 });
 
 // method to generate acces token
